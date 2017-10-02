@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/aguimaraes/boringcoin/pkg/block"
-	"github.com/aguimaraes/boringcoin/pkg/server"
 	"log"
 	"net/http"
+
+	"github.com/aguimaraes/boringcoin/pkg/block"
+	"github.com/aguimaraes/boringcoin/pkg/server"
 )
 
 func main() {
-
 	c := []block.Block{block.Genesis()}
 	pb := c[0]
 	l := 20
@@ -24,5 +24,4 @@ func main() {
 	http.HandleFunc("/transaction", server.AddTransaction)
 
 	log.Fatal(http.ListenAndServe(":12345", nil))
-
 }

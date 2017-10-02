@@ -3,8 +3,9 @@ package server
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/aguimaraes/boringcoin/pkg/transaction"
 	"net/http"
+
+	"github.com/aguimaraes/boringcoin/pkg/transaction"
 )
 
 var transactions []transaction.Transaction
@@ -15,10 +16,8 @@ func AddTransaction(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	decoder := json.NewDecoder(r.Body)
 	t := transaction.Transaction{}
-	err := decoder.Decode(&t)
-	if err != nil {
+	if err := json.NewDecoder(r.Body).Decode(&t); err != nil {
 		panic(err)
 	}
 	defer r.Body.Close()

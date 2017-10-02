@@ -21,7 +21,7 @@ func New(i uint64, t time.Time, d string, p hash.Hash) Block {
 	return b
 }
 
-func (b *Block) HashIt() hash.Hash {
+func (b Block) HashIt() hash.Hash {
 	i := strconv.FormatUint(b.Index, 16)
 	t := b.Timestamp.String()
 	ph := b.PreviousHash.Sum(nil)
